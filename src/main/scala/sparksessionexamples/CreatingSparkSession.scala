@@ -1,9 +1,14 @@
 package sparksessionexamples
 
-import org.apache.spark.internal.Logging
 import org.apache.spark.sql.SparkSession
+import org.apache.log4j.{Logger, Level}
 
-object CreatingSparkSession extends App with Logging {
+object CreatingSparkSession extends App {
+
+  // First line: silence Spark noise
+  Logger.getLogger("org").setLevel(Level.ERROR)
+  val log = Logger.getLogger(getClass.getName)
+
   val spark = SparkSession.builder()
     .appName("Creating Spark Session")
     .master("local[*]")
